@@ -1,8 +1,5 @@
 package com.logicway.aws.demo;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 /** Simple class to start up the application.
  *
  * @SpringBootApplication adds:
@@ -10,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *  @EnableAutoConfiguration
  *  @ComponentScan
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+//        SpringApplication.run(Application.class, args);
     }
 }
