@@ -7,7 +7,7 @@ phases:
       - echo Build started on `date`
       - mvn package shade:shade
       - mv target/aws-demo-1.0.jar .
-      - unzip HelloWorld-1.0.jar
+      - unzip aws-demo-1.0.jar
       - rm -rf target src buildspec.yml pom.xml aws-demo-1.0.jar
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
 artifacts:
