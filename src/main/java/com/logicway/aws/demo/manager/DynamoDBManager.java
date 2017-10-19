@@ -1,12 +1,9 @@
 package com.logicway.aws.demo.manager;
 
-
-
-import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-
 
 public class DynamoDBManager {
 
@@ -16,15 +13,18 @@ public class DynamoDBManager {
 
     private DynamoDBManager() {
 
-        AmazonDynamoDBClient client = new AmazonDynamoDBClient();
-        client.setRegion(Region.getRegion(Regions.US_EAST_1));
+        AmazonDynamoDB client = AmazonDynamoDBClientBuilder
+                .standard()
+                .withRegion(Regions.US_EAST_1)
+                .build();
+
         mapper = new DynamoDBMapper(client);
     }
 
     public static DynamoDBManager instance() {
 
         if (instance == null) {
-            synchronized(DynamoDBManager.class) {
+            synchronized (DynamoDBManager.class) {
                 if (instance == null)
                     instance = new DynamoDBManager();
             }
