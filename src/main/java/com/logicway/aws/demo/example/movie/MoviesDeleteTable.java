@@ -1,8 +1,9 @@
-package com.logicway.aws.demo.handler.movie;
+package com.logicway.aws.demo.example.movie;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.logicway.aws.demo.DefaultDynamoDB;
 
 public class MoviesDeleteTable {
 

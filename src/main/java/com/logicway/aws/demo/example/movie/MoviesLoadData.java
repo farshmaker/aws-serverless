@@ -1,4 +1,4 @@
-package com.logicway.aws.demo.handler.movie;
+package com.logicway.aws.demo.example.movie;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.logicway.aws.demo.DefaultDynamoDB;
 
 import java.net.URL;
 import java.util.Iterator;
