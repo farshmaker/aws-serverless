@@ -6,7 +6,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.logicway.aws.demo.GatewayResponse;
+import com.logicway.aws.demo.gateway.GatewayResponse;
 
 /**
  * Handler for requests to Lambda function.

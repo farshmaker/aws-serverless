@@ -1,4 +1,4 @@
-package com.logicway.aws.demo;
+package com.logicway.aws.demo.gateway;
 
 import java.util.Collections;
 import java.util.HashMap;
