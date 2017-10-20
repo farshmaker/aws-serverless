@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  CreateEpisodeHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.episode.CreateEpisodeHandler
+      Runtime: java8
+      FunctionName: CreateEpisodeHandler
+      MemorySize: 192
+      Timeout: 15
+      Role: 'arn:aws:iam::654284801655:role/lambda_basic_execution'
+      CodeUri: 's3://dafuq-jars/aws-demo-1.0.jar'
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/episodes/add
+            Method: post
+      Tags:
+        Entity: Episode
