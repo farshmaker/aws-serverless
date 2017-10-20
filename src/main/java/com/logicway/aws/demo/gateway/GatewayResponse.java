@@ -9,25 +9,33 @@ import java.util.Map;
  */
 public class GatewayResponse {
 
-    private final String body;
-    private final Map<String, String> headers;
-    private final int statusCode;
+    private final Boolean error;
+    private final Object data;
+    private final String message;
 
-    public GatewayResponse(final String body, final Map<String, String> headers, final int statusCode) {
-        this.statusCode = statusCode;
-        this.body = body;
-        this.headers = Collections.unmodifiableMap(new HashMap<>(headers));
+    protected GatewayResponse(boolean isError, Object data, String errorMessage){
+        this.error = isError;
+        this.data = data;
+        this.message = errorMessage;
     }
 
-    public String getBody() {
-        return body;
+    public static GatewayResponse createSuccess(Object data) {
+        return new GatewayResponse(false, data, "");
     }
 
-    public Map<String, String> getHeaders() {
-        return headers;
+    public static GatewayResponse createError(String errorMessage) {
+        return new GatewayResponse(true, "", errorMessage);
     }
 
-    public int getStatusCode() {
-        return statusCode;
+    public Boolean getError() {
+        return error;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
