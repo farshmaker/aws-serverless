@@ -1,70 +1,121 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Resources:
-  CreateEpisodeHandler:
+  AddStoryHandler:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.logicway.aws.demo.handler.episode.CreateEpisodeHandler
+      Handler: com.logicway.aws.demo.handler.story.AddStoryHandler
       Runtime: java8
-      FunctionName: CreateEpisodeHandler
+      FunctionName: dafuq-story-add
       MemorySize: 192
       Timeout: 15
       Role: 'arn:aws:iam::654284801655:role/lambda_basic_execution'
       CodeUri: 's3://dafuq-jars/aws-demo-1.0.jar'
       Events:
-        GetEvent:
+        AddStory:
           Type: Api
           Properties:
-            Path: /api/episodes/add
+            Path: /api/stories/add
             Method: post
       Tags:
-        Entity: Episode
-  GetEpisodeHandler:
+        Entity: Story
+  GetAllStoryHandler:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.logicway.aws.demo.handler.episode.GetEpisodeHandler
+      Handler: com.logicway.aws.demo.handler.story.GetAllStoryHandler
       Runtime: java8
-      FunctionName: GetEpisodeHandler
+      FunctionName: dafuq-story-get-all
       MemorySize: 192
       Timeout: 15
       Role: 'arn:aws:iam::654284801655:role/lambda_basic_execution'
       CodeUri: 's3://dafuq-jars/aws-demo-1.0.jar'
       Events:
-        GetEvent:
+        GetAllStories:
           Type: Api
           Properties:
-            Path: /api/episodes/add
+            Path: /api/stories/getAll
+            Method: get
+      Tags:
+        Entity: Story
+  RemoveStoryHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.story.RemoveStoryHandler
+      Runtime: java8
+      FunctionName: dafuq-story-remove
+      MemorySize: 192
+      Timeout: 15
+      Role: 'arn:aws:iam::654284801655:role/lambda_basic_execution'
+      CodeUri: 's3://dafuq-jars/aws-demo-1.0.jar'
+      Events:
+        RemoveStory:
+          Type: Api
+          Properties:
+            Path: /api/stories/remove
             Method: post
       Tags:
-        Entity: Episode
+        Entity: Story
+  UpdateStoryHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.story.UpdateStoryHandler
+      Runtime: java8
+      FunctionName: dafuq-story-update
+      MemorySize: 192
+      Timeout: 15
+      Role: 'arn:aws:iam::654284801655:role/lambda_basic_execution'
+      CodeUri: 's3://dafuq-jars/aws-demo-1.0.jar'
+      Events:
+        UpdateStory:
+          Type: Api
+          Properties:
+            Path: /api/stories/update
+            Method: post
+      Tags:
+        Entity: Story
   userTable:
-    Type: AWS::Serverless::SimpleTable
+    Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        PrimaryKey:
-          Name: id
-          Type: String
+        -
+          AttributeName: id
+          AttributeType: S
+      KeySchema:
+        -
+          AttributeName: id
+          KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
       TableName: Users
   storyTable:
-    Type: AWS::Serverless::SimpleTable
+    Type: AWS::DynamoDB::Table
     Properties:
-      PrimaryKey:
-        Name: id
-        Type: String
+      AttributeDefinitions:
+        -
+          AttributeName: id
+          AttributeType: S
+      KeySchema:
+        -
+          AttributeName: id
+          KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 7
         WriteCapacityUnits: 3
       TableName: Stories
   episodeTable:
-    Type: AWS::Serverless::SimpleTable
+    Type: AWS::DynamoDB::Table
     Properties:
-      PrimaryKey:
-        Name: id
-        Type: String
+      AttributeDefinitions:
+        -
+          AttributeName: id
+          AttributeType: S
+      KeySchema:
+        -
+          AttributeName: id
+          KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 7
         WriteCapacityUnits: 3
       TableName: Episodes
+

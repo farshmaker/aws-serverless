@@ -64,16 +64,4 @@ public class Episode {
     public void setAvailableAt(Date availableAt) {
         this.availableAt = availableAt;
     }
-
-    @Override
-    public String toString() {
-        return "Episode{" +
-                "id='" + id + '\'' +
-                ", storyId='" + storyId + '\'' +
-                ", number=" + number +
-                ", textjson='" + textjson + '\'' +
-                ", description='" + description + '\'' +
-                ", availableAt=" + availableAt +
-                '}';
-    }
 }

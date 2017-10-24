@@ -118,22 +118,4 @@ public class Story {
     public void setTheme(String theme) {
         this.theme = theme;
     }
-
-    @Override
-    public String toString() {
-        return "Story{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", image='" + image + '\'' +
-                ", availableAt=" + availableAt +
-                ", hidden=" + hidden +
-                ", backgroundcolor='" + backgroundcolor + '\'' +
-                ", foregroundcolor='" + foregroundcolor + '\'' +
-                ", minuserlevel='" + minuserlevel + '\'' +
-                ", tags='" + tags + '\'' +
-                ", locale='" + locale + '\'' +
-                ", rating=" + rating +
-                ", theme='" + theme + '\'' +
-                '}';
-    }
 }

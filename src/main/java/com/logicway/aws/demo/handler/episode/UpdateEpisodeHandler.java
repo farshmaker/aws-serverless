@@ -1,4 +1,4 @@
-package com.logicway.aws.demo.handler.user;
+package com.logicway.aws.demo.handler.episode;
 
 import com.amazonaws.serverless.proxy.internal.model.AwsProxyRequest;
 import com.amazonaws.serverless.proxy.internal.model.AwsProxyResponse;
@@ -7,13 +7,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logicway.aws.demo.entity.User;
+import com.logicway.aws.demo.entity.Episode;
 import com.logicway.aws.demo.gateway.GatewayResponse;
 import com.logicway.aws.demo.manager.DynamoDBManager;
 
 import java.io.IOException;
 
-public class UserHandler implements RequestHandler<AwsProxyRequest, AwsProxyResponse> {
+public class UpdateEpisodeHandler implements RequestHandler<AwsProxyRequest, AwsProxyResponse> {
     private final DynamoDBMapper dynamoDBMapper = DynamoDBManager.mapper();
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -25,22 +25,14 @@ public class UserHandler implements RequestHandler<AwsProxyRequest, AwsProxyResp
                 .build();
 
         try {
-            User user = mapper.readValue(awsProxyRequest.getBody(), User.class);
+            Episode episode = mapper.readValue(awsProxyRequest.getBody(), Episode.class);
 
-            if (awsProxyRequest.getPath().endsWith("register")) {
-                dynamoDBMapper.save(user);
-                awsProxyResponse.setBody(GatewayResponse.createSuccess(user.getId()).toString());
-            } else if (awsProxyRequest.getPath().endsWith("get")) {
-                user = dynamoDBMapper.load(User.class, user.getId());
-                awsProxyResponse.setBody(GatewayResponse.createSuccess(mapper.writeValueAsString(user)).toString());
-            } else {
-                dynamoDBMapper.save(user, config);
-                awsProxyResponse.setBody(GatewayResponse.createSuccess("ok").toString());
-            }
-
+            dynamoDBMapper.save(episode, config);
+            awsProxyResponse.setBody(GatewayResponse.createSuccess("ok").toString());
             awsProxyResponse.setStatusCode(200);
         } catch (IOException e) {
-            e.printStackTrace();
+            awsProxyResponse.setBody(GatewayResponse.createSuccess("Error during update").toString());
+            awsProxyResponse.setStatusCode(500);
         }
 
         return awsProxyResponse;
