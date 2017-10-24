@@ -16,7 +16,7 @@ public class User {
     private Date register;
     private Date lastActivity;
     private Date subscription;
-    private Integer isFree;
+    private boolean isFree;
     private String appleToken;
     private String curEpisode;
     private Integer curMessage;
@@ -71,11 +71,11 @@ public class User {
         this.subscription = subscription;
     }
 
-    public Integer getIsFree() {
+    public boolean getIsFree() {
         return isFree;
     }
 
-    public void setIsFree(Integer isFree) {
+    public void setIsFree(boolean isFree) {
         this.isFree = isFree;
     }
 
@@ -117,23 +117,5 @@ public class User {
 
     public void setProductId(Date productId) {
         this.productId = productId;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", scenarioId='" + scenarioId + '\'' +
-                ", testData='" + testData + '\'' +
-                ", register=" + register +
-                ", lastActivity=" + lastActivity +
-                ", subscription=" + subscription +
-                ", isFree=" + isFree +
-                ", appleToken='" + appleToken + '\'' +
-                ", curEpisode='" + curEpisode + '\'' +
-                ", curMessage=" + curMessage +
-                ", locale='" + locale + '\'' +
-                ", productId=" + productId +
-                '}';
     }
 }

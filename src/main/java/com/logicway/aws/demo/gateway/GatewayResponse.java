@@ -38,4 +38,13 @@ public class GatewayResponse {
     public String getMessage() {
         return message;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "error:" + error +
+                ", data:" + data +
+                ", message:'" + message + '\'' +
+                '}';
+    }
 }
