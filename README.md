@@ -1,8 +1,5 @@
-Welcome to the AWS CodeStar sample web service
+DaFuq
 ==============================================
-
-This sample code helps get you started with a simple Java web service using
-AWS Lambda and Amazon API Gateway.
 
 What's Here
 -----------
@@ -10,35 +7,25 @@ What's Here
 This sample includes:
 
 * README.md - this file
-* buildspec.yml - this file is used by AWS CodeBuild to build the web
-  service
 * pom.xml - this file is the Maven Project Object Model for the web service
 * src/ - this directory contains your Java service source files
-* template.yml - this file contains the Serverless Application Model (SAM) used
-  by AWS Cloudformation to deploy your application to AWS Lambda and Amazon API
-  Gateway.
+* dafuq.template.yml - this file contains the Serverless Application Model (SAM) used
+  by AWS Cloudformation to create DynamoDB tables and deploy your application to AWS Lambda and Amazon API
+  Gateway. 
 
 
 What Do I Do Next?
 ------------------
 
-If you have checked out a local copy of your repository you can start making changes
-to the sample code.  We suggest making a small change to index.py first, so you can
-see how changes pushed to your project's repository are automatically picked up by
-your project pipeline and deployed to AWS Lambda and Amazon API Gateway. (You can
-watch the pipeline progress on your AWS CodeStar project dashboard.) Once you've seen
-how that works, start developing your own code, and have fun!
+* Sign in to the AWS Management Console and open the Amazon S3 console at https://console.aws.amazon.com/s3/
+* In the Bucket name list, create or choose(if already exist) the "dafuq-jars" bucket. Click "Upload" button and choose aws-demo.jar package under 
+"target/" folder (You have to build it before if absent) and click "Upload" again.
+* Open https://console.aws.amazon.com/cloudformation/. Create or update existing stack. Then click "Upload a template to Amazon S3" > 
+choose dafuq.template.yaml file under project root folder > Enter stack name if you create a new one. Click Next > 
+Next > Click "Create change set" > Execute.
+* https://console.aws.amazon.com/apigateway/ — list of API. 
+To invoke API call https://{my-api-id}.execute-api.{region-id}.amazonaws.com/{stage-name}/{resourcePath}. 
+For DaFuq demo example call https://qckewe8f2k.execute-api.us-east-1.amazonaws.com/Prod/{resourcePath}. Resource path according 
+https://docs.google.com/document/d/1Sx3AqhHUb3C0_nV98jd2ByPVQSdWRNAbEe4UAZbtuXU
+* https://console.aws.amazon.com/dynamodb/ — dynamoDB
 
-Learn more about Serverless Application Model (SAM) and how it works here:
-https://github.com/awslabs/serverless-application-model/blob/master/HOWTO.md
-
-AWS Lambda Developer Guide:
-http://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html
-
-Learn more about AWS CodeStar by reading the user guide, and post questions and
-comments about AWS CodeStar on our forum.
-
-AWS CodeStar User Guide:
-http://docs.aws.amazon.com/codestar/latest/userguide/welcome.html
-
-AWS CodeStar Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
