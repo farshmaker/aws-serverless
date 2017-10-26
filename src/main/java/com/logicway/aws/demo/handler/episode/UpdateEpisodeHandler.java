@@ -31,7 +31,7 @@ public class UpdateEpisodeHandler implements RequestHandler<AwsProxyRequest, Aws
             awsProxyResponse.setBody(GatewayResponse.createSuccess("ok").toString());
             awsProxyResponse.setStatusCode(200);
         } catch (IOException e) {
-            awsProxyResponse.setBody(GatewayResponse.createSuccess("Error during update").toString());
+            awsProxyResponse.setBody(GatewayResponse.createSuccess("Error during update episode").toString());
             awsProxyResponse.setStatusCode(500);
         }
 

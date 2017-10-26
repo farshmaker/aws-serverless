@@ -16,7 +16,7 @@ public class User {
     private Date register;
     private Date lastActivity;
     private Date subscription;
-    private boolean isFree;
+    private Boolean isFree;
     private String appleToken;
     private String curEpisode;
     private Integer curMessage;
@@ -71,11 +71,11 @@ public class User {
         this.subscription = subscription;
     }
 
-    public boolean getIsFree() {
+    public Boolean getIsFree() {
         return isFree;
     }
 
-    public void setIsFree(boolean isFree) {
+    public void setIsFree(Boolean isFree) {
         this.isFree = isFree;
     }
 

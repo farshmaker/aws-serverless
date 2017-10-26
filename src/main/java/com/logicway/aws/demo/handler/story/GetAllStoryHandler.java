@@ -3,7 +3,6 @@ package com.logicway.aws.demo.handler.story;
 import com.amazonaws.serverless.proxy.internal.model.AwsProxyRequest;
 import com.amazonaws.serverless.proxy.internal.model.AwsProxyResponse;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -27,11 +26,12 @@ public class GetAllStoryHandler implements RequestHandler<AwsProxyRequest, AwsPr
 
         try {
             awsProxyResponse.setBody(GatewayResponse.createSuccess(mapper.writeValueAsString(stories)).toString());
+            awsProxyResponse.setStatusCode(200);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            awsProxyResponse.setBody(GatewayResponse.createError("Error during getting all stories").toString());
+            awsProxyResponse.setStatusCode(500);
         }
 
-        awsProxyResponse.setStatusCode(200);
         return awsProxyResponse;
 
     }

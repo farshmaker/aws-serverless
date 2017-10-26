@@ -1,6 +1,78 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: 'AWS::Serverless-2016-10-31'
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
 Resources:
+  AddEpisodeHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.episode.AddEpisodeHandler
+      Runtime: java8
+      FunctionName: dafuq-episode-add
+      MemorySize: 192
+      Timeout: 15
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
+      Events:
+        AddEpisode:
+          Type: Api
+          Properties:
+            Path: /api/episodes/add
+            Method: post
+      Tags:
+        Entity: Episode
+  GetEpisodeHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.episode.GetEpisodeHandler
+      Runtime: java8
+      FunctionName: dafuq-episode-get
+      MemorySize: 192
+      Timeout: 15
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
+      Events:
+        GetEpisode:
+          Type: Api
+          Properties:
+            Path: /api/episodes/get
+            Method: get
+      Tags:
+        Entity: Episode
+  RemoveEpisodeHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.episode.RemoveEpisodeHandler
+      Runtime: java8
+      FunctionName: dafuq-episode-remove
+      MemorySize: 192
+      Timeout: 15
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
+      Events:
+        RemoveEpisode:
+          Type: Api
+          Properties:
+            Path: /api/episodes/remove
+            Method: post
+      Tags:
+        Entity: Episode
+  UpdateEpisodeHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.episode.UpdateEpisodeHandler
+      Runtime: java8
+      FunctionName: dafuq-episode-update
+      MemorySize: 192
+      Timeout: 15
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
+      Events:
+        UpdateEpisode:
+          Type: Api
+          Properties:
+            Path: /api/episodes/update
+            Method: post
+      Tags:
+        Entity: Episode
   AddStoryHandler:
     Type: AWS::Serverless::Function
     Properties:
@@ -9,8 +81,8 @@ Resources:
       FunctionName: dafuq-story-add
       MemorySize: 192
       Timeout: 15
-      Role: 'arn:aws:iam::654284801655:role/lambda_basic_execution'
-      CodeUri: 's3://dafuq-jars/aws-demo-1.0.jar'
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
       Events:
         AddStory:
           Type: Api
@@ -27,8 +99,8 @@ Resources:
       FunctionName: dafuq-story-get-all
       MemorySize: 192
       Timeout: 15
-      Role: 'arn:aws:iam::654284801655:role/lambda_basic_execution'
-      CodeUri: 's3://dafuq-jars/aws-demo-1.0.jar'
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
       Events:
         GetAllStories:
           Type: Api
@@ -45,8 +117,8 @@ Resources:
       FunctionName: dafuq-story-remove
       MemorySize: 192
       Timeout: 15
-      Role: 'arn:aws:iam::654284801655:role/lambda_basic_execution'
-      CodeUri: 's3://dafuq-jars/aws-demo-1.0.jar'
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
       Events:
         RemoveStory:
           Type: Api
@@ -63,8 +135,8 @@ Resources:
       FunctionName: dafuq-story-update
       MemorySize: 192
       Timeout: 15
-      Role: 'arn:aws:iam::654284801655:role/lambda_basic_execution'
-      CodeUri: 's3://dafuq-jars/aws-demo-1.0.jar'
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
       Events:
         UpdateStory:
           Type: Api
@@ -73,16 +145,78 @@ Resources:
             Method: post
       Tags:
         Entity: Story
+  GetUserHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.user.GetUserHandler
+      Runtime: java8
+      FunctionName: dafuq-user-get
+      MemorySize: 192
+      Timeout: 15
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
+      Events:
+        GetUser:
+          Type: Api
+          Properties:
+            Path: /api/users/get
+            Method: put
+      Tags:
+        Entity: User
+  RegisterUserHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.user.RegisterUserHandler
+      Runtime: java8
+      FunctionName: dafuq-user-register
+      MemorySize: 192
+      Timeout: 15
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
+      Events:
+        RegisterUser:
+          Type: Api
+          Properties:
+            Path: /api/users/register
+            Method: put
+      Tags:
+        Entity: User
+  UpdateUserHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.logicway.aws.demo.handler.user.UpdateUserHandler
+      Runtime: java8
+      FunctionName: dafuq-user-update
+      MemorySize: 192
+      Timeout: 15
+      Role: arn:aws:iam::654284801655:role/lambda_basic_execution
+      CodeUri: s3://dafuq-jars/aws-demo-1.0.jar
+      Events:
+        UpdateUser:
+          Type: Api
+          Properties:
+            Path: /api/users/update
+            Method: post
+        SetToken:
+          Type: Api
+          Properties:
+            Path: /api/users/setToken
+            Method: post
+        UpdateActivity:
+          Type: Api
+          Properties:
+            Path: /api/users/updateActivity
+            Method: post
+      Tags:
+        Entity: User
   userTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        -
-          AttributeName: id
+        - AttributeName: id
           AttributeType: S
       KeySchema:
-        -
-          AttributeName: id
+        - AttributeName: id
           KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 5
@@ -92,12 +226,10 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        -
-          AttributeName: id
+        - AttributeName: id
           AttributeType: S
       KeySchema:
-        -
-          AttributeName: id
+        - AttributeName: id
           KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 7
@@ -107,12 +239,10 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        -
-          AttributeName: id
+        - AttributeName: id
           AttributeType: S
       KeySchema:
-        -
-          AttributeName: id
+        - AttributeName: id
           KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 7

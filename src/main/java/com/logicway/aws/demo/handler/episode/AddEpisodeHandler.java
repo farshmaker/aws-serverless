@@ -22,12 +22,13 @@ public class AddEpisodeHandler implements RequestHandler<AwsProxyRequest, AwsPro
 
         try {
             Episode episode = mapper.readValue(awsProxyRequest.getBody(), Episode.class);
-
+            context.getLogger().log(episode.toString() + "\n");
+            context.getLogger().log(episode.getTextjson().toString() + "\n");
             dynamoDBMapper.save(episode);
             awsProxyResponse.setBody(GatewayResponse.createSuccess(episode.getId()).toString());
             awsProxyResponse.setStatusCode(200);
         } catch (IOException e) {
-            awsProxyResponse.setBody(GatewayResponse.createError("Error during addition").toString());
+            awsProxyResponse.setBody(GatewayResponse.createError("Error during addition episode").toString());
             awsProxyResponse.setStatusCode(500);
         }
 

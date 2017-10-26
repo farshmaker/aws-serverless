@@ -27,7 +27,7 @@ public class RemoveEpisodeHandler implements RequestHandler<AwsProxyRequest, Aws
             awsProxyResponse.setBody(GatewayResponse.createSuccess("ok").toString());
             awsProxyResponse.setStatusCode(200);
         } catch (IOException e) {
-            awsProxyResponse.setBody(GatewayResponse.createError("Error during deletion").toString());
+            awsProxyResponse.setBody(GatewayResponse.createError("Error during deletion episode").toString());
             awsProxyResponse.setStatusCode(500);
         }
 

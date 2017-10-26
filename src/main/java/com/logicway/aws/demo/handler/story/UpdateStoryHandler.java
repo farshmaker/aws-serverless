@@ -30,7 +30,8 @@ public class UpdateStoryHandler implements RequestHandler<AwsProxyRequest, AwsPr
             awsProxyResponse.setBody(GatewayResponse.createSuccess("ok").toString());
             awsProxyResponse.setStatusCode(200);
         } catch (IOException e) {
-            e.printStackTrace();
+            awsProxyResponse.setBody(GatewayResponse.createError("Error during update story").toString());
+            awsProxyResponse.setStatusCode(500);
         }
 
         return awsProxyResponse;

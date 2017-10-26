@@ -27,7 +27,7 @@ public class GetEpisodeHandler implements RequestHandler<AwsProxyRequest, AwsPro
             awsProxyResponse.setBody(GatewayResponse.createSuccess(mapper.writeValueAsString(episode)).toString());
             awsProxyResponse.setStatusCode(200);
         } catch (IOException e) {
-            awsProxyResponse.setBody(GatewayResponse.createError("Error during getting").toString());
+            awsProxyResponse.setBody(GatewayResponse.createError("Error during getting episode").toString());
             awsProxyResponse.setStatusCode(500);
             e.printStackTrace();
         }

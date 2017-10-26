@@ -9,7 +9,7 @@ phases:
       - mv target/aws-demo-1.0.jar .
       - unzip aws-demo-1.0.jar
       - rm -rf target src buildspec.yml pom.xml aws-demo-1.0.jar
-      - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
+      - aws cloudformation package --template dafuq.template.yml --s3-bucket $S3_BUCKET --output-template dafuq.template-export.yml
 artifacts:
   files:
-    - template-export.yml
+    - dafuq.template-export.yml

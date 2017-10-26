@@ -6,13 +6,10 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 public class DynamoDBManager {
-
     private static volatile DynamoDBManager instance;
-
     private static DynamoDBMapper mapper;
 
     private DynamoDBManager() {
-
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder
                 .standard()
                 .withRegion(Regions.US_EAST_1)
@@ -22,11 +19,11 @@ public class DynamoDBManager {
     }
 
     public static DynamoDBManager instance() {
-
         if (instance == null) {
             synchronized (DynamoDBManager.class) {
-                if (instance == null)
+                if (instance == null) {
                     instance = new DynamoDBManager();
+                }
             }
         }
 
@@ -34,7 +31,6 @@ public class DynamoDBManager {
     }
 
     public static DynamoDBMapper mapper() {
-
         DynamoDBManager manager = instance();
         return manager.mapper;
     }
