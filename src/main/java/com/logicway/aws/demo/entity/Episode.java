@@ -13,7 +13,7 @@ public class Episode {
     private String id;
     private String storyId;
     private Integer number;
-    private Map textjson;
+    private Map<String, Object> textjson;
     private String description;
     private Date availableAt;
 
@@ -42,12 +42,12 @@ public class Episode {
     }
 
     @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.M)
-    public Map getTextjson() {
+    public Map<String, Object> getTextjson() {
         return textjson;
     }
 
     @JsonProperty("textjson")
-    public void setTextjson(Map textjson) {
+    public void setTextjson(Map<String, Object> textjson) {
         this.textjson = textjson;
     }
 

@@ -34,7 +34,7 @@ Resources:
           Type: Api
           Properties:
             Path: /api/episodes/get
-            Method: get
+            Method: put
       Tags:
         Entity: Episode
   RemoveEpisodeHandler:
